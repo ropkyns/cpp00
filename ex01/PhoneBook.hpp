@@ -6,7 +6,7 @@
 /*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:14:32 by palu              #+#    #+#             */
-/*   Updated: 2024/12/14 17:46:16 by palu             ###   ########.fr       */
+/*   Updated: 2025/02/22 19:52:55 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,18 @@
 class PhoneBook
 {
 	private:
-		Contact	list_contact[8];
+		Contact	_contact[8];
 		int		index;
-
+		int		contact_count;
 	public:
-		PhoneBook()
-		{
-			list_contact[8];
-			index = -1;
-		}
+		PhoneBook();
+		~PhoneBook();
 		Contact	getcontact(int i);
-		void	addcontact(const Contact& c);
-};
+		int		get_index();
+		int		get_contact_count();
+		int		set_contact(Contact contact);
+		void	display(int i);
+		int		display_all(int contact_index);
+	};
 
 #endif

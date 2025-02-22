@@ -6,7 +6,7 @@
 /*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 13:23:18 by palu              #+#    #+#             */
-/*   Updated: 2024/12/14 18:00:44 by palu             ###   ########.fr       */
+/*   Updated: 2025/02/22 20:19:29 by palu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,46 @@
 
 int main(void)
 {
-	std::string input;
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
-	PhoneBook p;
+	std::string		input;
+	PhoneBook		pb;
+	int				i;
 
+	i = 0;
+	input = "";
 	while (true)
 	{
-		std::cout << "Enter a command (ADD, SEARCH and EXIT)" << std::endl;
+		std::cout << "Enter a command (ADD, SEARCH or EXIT)" << std::endl;
 		if (!(std::getline(std::cin, input)))
 			return (1);
-		if (input == "ADD")
+		if (!input.compare("EXIT"))
+			return (0);
+		else if (!input.compare("ADD"))
 		{
-			std::cout << "Enter a first name" << std::endl;
-			if (!(getline(std::cin, first_name)))
-				break ;
-			std::cout << "Enter a last name" << std::endl;
-			if (!(getline(std::cin, last_name)))
-				break ;
-			std::cout << "Enter a nickname" << std::endl;
-			if (!(getline(std::cin, nickname)))
-				break ;
-			std::cout << "Enter a phone number" << std::endl;
-			if (!(getline(std::cin, phone_number)))
-				break ;
-			std::cout << "Enter the darkest secret" << std::endl;
-			if (!(getline(std::cin, darkest_secret)))
-				break ;
-			Contact c(first_name, last_name, nickname, phone_number, darkest_secret);
-			c.afficher();
-			p.addcontact(c);
+			Contact contact;
+			if (pb.set_contact(contact))
+				return (1);
 		}
+		else if (!input.compare("SEARCH"))
+		{
+			if (!pb.display_all(pb.get_contact_count()))
+			{
+				std::cout << "Enter the index of the contact you want to display" << std::endl;
+				while (true)
+				{
+					if (!std::getline(std::cin, input))
+						return (1);
+					if (std::atoi(input.c_str()) <= 8 && std::atoi(input.c_str()) >= 1)
+					{
+						pb.display(std::atoi(input.c_str()) - 1);
+						break;
+					}
+					else
+						std::cout << "Invalid index, please enter a number between 1 and 8" << std::endl;
+				}
+			}
+		}
+		else
+			std::cout << "Invalid command. Try again !" << std::endl;
 	}
+	return (0);
 }
