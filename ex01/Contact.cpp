@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: palu <palu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: paulmart <paulmart@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 13:10:10 by palu              #+#    #+#             */
-/*   Updated: 2025/02/22 20:36:36 by palu             ###   ########.fr       */
+/*   Updated: 2025/02/24 14:26:27 by paulmart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@ int	Contact::addcontact(Contact *contact)
 	contact->last_name = input;
 	input.erase();
 	std::cout << "Nick Name : ";
-	while(input.length()<1)
+	while(input.length() < 1)
 		if (!(std::getline(std::cin, input)))
 			return (1);
 	contact->nickname = input;
 	input.erase();
 	std::cout << "Phone Number : ";
-	while(input.length()<1)
+	while(input.length() < 1)
 		if (!(std::getline(std::cin, input)))
 			return (1);
 	contact->phone_number = input;
 	input.erase();
 	std::cout << "Darkest Secret : ";
-	while(input.length()<1)
+	while(input.length() < 1)
 		if (!(std::getline(std::cin, input)))
 			return (1);
 	contact->secret = input;
